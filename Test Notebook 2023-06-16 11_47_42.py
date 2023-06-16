@@ -46,7 +46,7 @@ cfn = LangChainLLMCompletionFn("Databricks", {"cluster_id":cluster_id, "cluster_
 
 # COMMAND ----------
 
-cfn.llm("What is Databricks")
+cfn.llm("tell me a joke")
 
 # COMMAND ----------
 
@@ -54,11 +54,31 @@ from evals.cli import oaieval
 
 # COMMAND ----------
 
-args = oaieval.OaiEvalArguments(completion_fn="langchain/llm/mpt-7b-instruct",eval="test-math", debug=True, visible=True, max_samples=3, registr)
+args = oaieval.OaiEvalArguments(completion_fn="langchain/llm/mpt-7b-instruct", eval="test-match", debug=False, visible=None, max_samples=3, registry_path=None, cache=True, seed=20220722, user="", record_path=None, dry_run=False, local_run=True, dry_run_logging=True, extra_eval_params="")
 
 # COMMAND ----------
 
-# MAGIC %sh oaieval langchain/llm/mpt-7b-instruct test-match
+oaieval.run(args)
+
+# COMMAND ----------
+
+# MAGIC %sh cat /tmp/evallogs/230616082256XZQYLX7Q_langchain/llm/mpt-7b-instruct_test-match.jsonl
+
+# COMMAND ----------
+
+from evals.cli import oaievalset
+
+# COMMAND ----------
+
+args_eval_set = oaievalset.OaiEvalSetArguments(model="langchain/llm/mpt-7b-instruct", eval_set="test-basic", resume=True, exit_on_error=True)
+
+# COMMAND ----------
+
+oaievalset.run(args_eval_set, unknown_args=[])
+
+# COMMAND ----------
+
+# MAGIC %sh oaievalset gpt-3.5-turbo test-basic
 
 # COMMAND ----------
 

@@ -85,6 +85,7 @@ def run(
                 logger.debug("The eval #%d in eval_set is not valid", index)
 
             command = [run_command, args.model, eval.key] + unknown_args
+            print(f"command: {command}")
             if command in commands:
                 continue
             commands.append(command)

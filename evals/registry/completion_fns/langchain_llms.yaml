@@ -22,10 +22,10 @@ langchain/llm/flan-t5-xl:
 langchain/llm/mpt-7b-instruct:
   class: evals.completion_fns.langchain_llm:LangChainLLMCompletionFn
   args:
-    llm:Databricks
+    llm: Databricks
     llm_kwargs:
-      cluster_id:0608-083505-hk6qa5vj
-      cluster_driver_port:7777
+      cluster_id: 0608-083505-hk6qa5vj
+      cluster_driver_port: 7777
       model_kwargs:
         temperature: .4
 
